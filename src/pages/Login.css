@@ -1,0 +1,76 @@
+.login-container {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(255,255,255,0.02);
+  backdrop-filter: none;
+}
+
+.login-card {
+  background: rgba(255, 255, 255, 0.92);
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: 450px;
+  backdrop-filter: blur(6px);
+}
+
+.login-card h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 32px;
+}
+
+.login-card h2 {
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+  font-size: 24px;
+  font-weight: 400;
+}
+
+.btn.btn-primary {
+  background: linear-gradient(90deg, #43cea2 0%, #185a9d 100%);
+  box-shadow: 0 8px 16px rgba(24, 90, 157, 0.3);
+}
+
+.btn.btn-primary:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+.register-link {
+  text-align: center;
+  margin-top: 20px;
+  color: #666;
+}
+
+.register-link a {
+  color: #2196F3;
+  text-decoration: none;
+}
+
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+.form-group select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  background-color: white;
+  cursor: pointer;
+}
+
+.form-group select:disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+}
+
+/* background animation removed; body provides image */
+
