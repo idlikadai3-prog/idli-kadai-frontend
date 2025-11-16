@@ -1,10 +1,9 @@
 import axios from 'axios'
 import { showError } from './toast'
 
-// Use Render backend directly
-const API_BASE_URL = 'https://idli-adai-backend-2.onrender.com'
-// Fallback to localhost for development
-// const API_BASE_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000'
+// Use Vite env var when provided (Netlify / Vercel), fallback to Render backend
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL || 'https://idli-adai-backend-2.onrender.com'
+// You can set `VITE_API_BASE_URL` in Netlify (Site settings → Build & deploy → Environment)
 
 const api = axios.create({
   baseURL: API_BASE_URL,
