@@ -1,11 +1,13 @@
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider } from './context/AuthContext'
+
 import Login from './pages/Login'
 import Register from './pages/Register'
 import UserDashboard from './pages/UserDashboard'
 import AdminDashboard from './pages/AdminDashboard'
 import ProtectedRoute from './components/ProtectedRoute'
 import Toast from './components/Toast'
+
 import './App.css'
 
 function App() {
@@ -15,6 +17,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
+
           <Route
             path="/dashboard"
             element={
@@ -23,6 +26,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route
             path="/admin"
             element={
@@ -31,6 +35,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+
           <Route path="/" element={<Navigate to="/dashboard" replace />} />
         </Routes>
         <Toast />
@@ -40,4 +45,3 @@ function App() {
 }
 
 export default App
-

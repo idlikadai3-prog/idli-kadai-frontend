@@ -191,36 +191,12 @@ const AdminDashboard = () => {
         showError('Password must be at least 6 characters')
         return
       }
-      try {
-        await api.post('/admin/sellers', {
-          username: sellerForm.username.trim(),
-          email: sellerForm.email.trim().toLowerCase(),
-          password: sellerForm.password
-        })
-      } catch (err) {
-        if (err?.response?.status === 404) {
-          try {
-            await api.post('/auth/sellers', {
-              username: sellerForm.username.trim(),
-              email: sellerForm.email.trim().toLowerCase(),
-              password: sellerForm.password
-            })
-          } catch (err2) {
-            if (err2?.response?.status === 404) {
-              // Final fallback to legacy path
-              await api.post('/sellers', {
-                username: sellerForm.username.trim(),
-                email: sellerForm.email.trim().toLowerCase(),
-                password: sellerForm.password
-              })
-            } else {
-              throw err2
-            }
-          }
-        } else {
-          throw err
-        }
-      }
+      // Use /sellers endpoint (requires seller token)
+      await api.post('/sellers', {
+        username: sellerForm.username.trim(),
+        email: sellerForm.email.trim().toLowerCase(),
+        password: sellerForm.password
+      })
       showSuccess('New seller created successfully!')
       setSellerForm({ username: '', email: '', password: '' })
       setShowSellerModal(false)
@@ -457,9 +433,12 @@ const AdminDashboard = () => {
                       {item.image_url ? (
                         <div style={{ marginBottom: '8px' }}>
                           <img
-                            src={item.image_url.startsWith('http') ? item.image_url : `http://localhost:8000${item.image_url}`}
+                            src={item.image_url.startsWith('http') ? item.image_url : `https://idli-adai-backend-2.onrender.com${item.image_url}`}
                             alt={item.name}
                             style={{ width: '100%', height: '160px', objectFit: 'cover', borderRadius: '8px' }}
+                            onError={(e) => {
+                              e.target.style.display = 'none'
+                            }}
                           />
                         </div>
                       ) : null}

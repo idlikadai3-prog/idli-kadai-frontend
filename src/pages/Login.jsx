@@ -15,11 +15,8 @@ const Login = () => {
   useEffect(() => {
     if (isAuthenticated && user) {
       // Redirect based on role
-      if (user.role === 'seller') {
-        navigate('/admin')
-      } else {
-        navigate('/dashboard')
-      }
+      if (user.role === 'seller') navigate('/admin')
+      else navigate('/dashboard')
     }
   }, [isAuthenticated, user, navigate])
 
@@ -27,15 +24,22 @@ const Login = () => {
     e.preventDefault()
     setLoading(true)
 
-    const result = await login(username, password)
-    
-    if (result.success) {
-      showSuccess('Login successful!')
-      // Navigation handled by useEffect
-    } else {
-      showError(result.error || 'Login failed. Please try again.')
+    try {
+      const result = await login(username, password)
+      console.log('Login result:', result) // <-- Debug: check backend response
+
+      if (result.success) {
+        setUsername('')
+        setPassword('')
+        showSuccess('Login successful!')
+        // Navigation handled by useEffect
+      } else {
+        showError(result.error || 'Login failed. Check your credentials.')
+      }
+    } catch (err) {
+      showError('Unexpected error. Try again.')
     }
-    
+
     setLoading(false)
   }
 
@@ -88,4 +92,3 @@ const Login = () => {
 }
 
 export default Login
-

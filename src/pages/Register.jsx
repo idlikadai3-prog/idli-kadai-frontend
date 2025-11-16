@@ -26,6 +26,9 @@ const Register = () => {
     const result = await register(username, email, password)
     
     if (result.success) {
+      setUsername('')
+      setEmail('')
+      setPassword('')
       showSuccess('Registration successful! Redirecting to login...')
       setTimeout(() => {
         navigate('/login')
